@@ -12078,11 +12078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\c#_projects\\Aionys\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1.csproj",
+      "projectUniqueName": "D:\\cSharp_projects\\Aionys\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1.csproj",
       "projectName": "ClientTaskWebAPI_v1",
-      "projectPath": "D:\\c#_projects\\Aionys\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1.csproj",
+      "projectPath": "D:\\cSharp_projects\\Aionys\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1.csproj",
       "packagesPath": "C:\\Users\\Valya\\.nuget\\packages\\",
-      "outputPath": "D:\\c#_projects\\Aionys\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1\\obj\\",
+      "outputPath": "D:\\cSharp_projects\\Aionys\\ClientTaskWebAPI_v1\\ClientTaskWebAPI_v1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
