@@ -37,6 +37,8 @@ namespace ClientTaskWebAPI_v1
 
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IClientTaskService, ClientTaskService>();
+            services.AddScoped<IClientTaskRepository, ClientTaskRepository>();
 
             //services.AddCors(options =>
             //{
