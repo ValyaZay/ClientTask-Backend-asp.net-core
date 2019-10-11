@@ -45,5 +45,27 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Services
             }
             return clientViewModels;
         }
+
+        public ClientViewModel GetClientById(int id)
+        {
+            ClientDTO clientDTO = _clientRepository.GetClientById(id);
+            ClientViewModel clientViewModel = new ClientViewModel();
+            clientViewModel.Id = clientDTO.Id;
+            clientViewModel.FirstName = clientDTO.FirstName;
+            clientViewModel.LastName = clientDTO.LastName;
+            clientViewModel.Address = clientDTO.Address;
+            
+            int[] phoneArray = clientDTO.PhoneNumber;
+            string phoneAsString = "";
+            foreach (int phone in phoneArray)
+            {
+                phoneAsString += phone + "; ";
+            }
+            char[] trimChars = new char[] { ' ', ';' };
+            phoneAsString = phoneAsString.Trim(trimChars);
+            clientViewModel.PhoneNumber = phoneAsString;
+
+            return clientViewModel;
+        }
     }
 }

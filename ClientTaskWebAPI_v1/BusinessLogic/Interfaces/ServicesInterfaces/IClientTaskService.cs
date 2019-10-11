@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClientTaskWebAPI_v1.BusinessLogic.Interfaces.ServicesInterfaces
 {
-    public interface IClientService
+    public interface IClientTaskService
     {
-        List<ClientViewModel> GetAllClients();
-        ClientViewModel GetClientById(int id);
+        List<ClientTaskViewModel> GetTasksByClientId(int id);
     }
 }

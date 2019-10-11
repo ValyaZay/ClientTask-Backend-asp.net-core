@@ -37,6 +37,21 @@ namespace ClientTaskWebAPI_v1
 
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IClientTaskService, ClientTaskService>();
+            services.AddScoped<IClientTaskRepository, ClientTaskRepository>();
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("EnableCORS",
+            //        builder =>
+            //        {
+            //            builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build();
+            //        });
+            //});
+            services.AddCors(opts =>
+            {
+                opts.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -44,6 +59,8 @@ namespace ClientTaskWebAPI_v1
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

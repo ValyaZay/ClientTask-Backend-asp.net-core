@@ -15,6 +15,12 @@ namespace ClientTaskWebAPI_v1.API.Contracts.V1
         public static class Client
         {
             public const string GetAll = Base + "/clients";
+            public const string GetClientById = Base + "/clients/{id}";
         }
+
+        public static class ClientTask
+        {
+            public const string GetAllByClientId = Base + "/clients/{id}/tasks";
+        }           
     }
 }

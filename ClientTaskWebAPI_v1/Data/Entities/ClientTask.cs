@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ClientTaskWebAPI_v1.Data.Entities
 {
-    public class Task
+    public class ClientTask
     {
         public int Id { get; set; }
         public string TaskName { get; set; }
@@ -13,5 +13,6 @@ namespace ClientTaskWebAPI_v1.Data.Entities
         public string ClientAddress { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int ClientId { get; set; }
     }
 }
