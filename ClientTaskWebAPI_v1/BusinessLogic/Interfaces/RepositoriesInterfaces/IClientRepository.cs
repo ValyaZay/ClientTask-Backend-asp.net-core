@@ -9,5 +9,6 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Interfaces.RepositoriesInterfaces
     public interface IClientRepository
     {
         List<ClientDTO> GetAllClients();
+        ClientDTO GetClientById(int id);
     }
 }

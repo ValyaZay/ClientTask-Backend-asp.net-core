@@ -16,7 +16,7 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
         {
             clientsList = new List<Client>()
             {
-                new Client() { Id = 1, FirstName = "John", LastName = "Smith",  Address = "London", PhoneNumber = new int[] { 12345, 45698 }},
+                new Client() { Id = 101, FirstName = "John", LastName = "Smith",  Address = "London", PhoneNumber = new int[] { 12345, 45698 }},
                 new Client() { Id = 2, FirstName = "Sara", LastName = "Waters",  Address = "Paris", PhoneNumber = new int[] { 5698, 4578, 12358 }},
                 new Client() { Id = 3, FirstName = "Bob", LastName = "Petrov",  Address = "Kiev", PhoneNumber = new int[] { 45698, 14587 }},
             };
@@ -39,6 +39,20 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
             }
 
             return clientsDTO;
+        }
+
+        public ClientDTO GetClientById(int id)
+        {
+            Client client = clientsList.Where(c => c.Id == id).FirstOrDefault();
+            ClientDTO clientDTO = new ClientDTO();
+           
+            clientDTO.Id = client.Id;
+            clientDTO.FirstName = client.FirstName;
+            clientDTO.LastName = client.LastName;
+            clientDTO.Address = client.Address;
+            clientDTO.PhoneNumber = client.PhoneNumber;
+
+            return clientDTO;
         }
     }
 }

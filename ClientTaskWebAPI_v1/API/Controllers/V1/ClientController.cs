@@ -24,5 +24,12 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
             List<ClientViewModel> clientViewModels = _clientService.GetAllClients();
             return Ok(clientViewModels);
         }
+
+        [HttpGet(ApiRoutes.Client.GetClientById)]
+        public IActionResult GetClientById(int id)
+        {
+            ClientViewModel clientViewModel = _clientService.GetClientById(id);
+            return Ok(clientViewModel);
+        }
     }
 }

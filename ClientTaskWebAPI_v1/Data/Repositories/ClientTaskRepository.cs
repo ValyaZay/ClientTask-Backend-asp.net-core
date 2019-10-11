@@ -16,9 +16,9 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
         {
             tasksList = new List<ClientTask>()
             {
-                new ClientTask() { Id = 1, TaskName = "Task_1", Description = "Do Task_1", ClientAddress = "London", StartTime = new DateTime (2019, 10, 10, 13, 15, 12), EndTime = new DateTime (2019, 10, 10, 13, 24, 36), ClientId = 1},
-                new ClientTask() { Id = 2, TaskName = "Task_2", Description = "Do Task_2", ClientAddress = "Kiev", StartTime = new DateTime (2019, 10, 10, 14, 24, 12), EndTime = new DateTime (2019, 10, 10, 14, 36, 36), ClientId = 1},
-                new ClientTask() { Id = 3, TaskName = "Task_3", Description = "Do Task_3", ClientAddress = "Paris", StartTime = new DateTime (2019, 10, 10, 14, 24, 12), EndTime = new DateTime (2019, 10, 10, 14, 36, 36), ClientId = 1},
+                new ClientTask() { Id = 1, TaskName = "Task_1", Description = "Do Task_1", ClientAddress = "London", StartTime = new DateTime (2019, 10, 10, 13, 15, 12), EndTime = new DateTime (2019, 10, 10, 13, 24, 36), ClientId = 101},
+                new ClientTask() { Id = 2, TaskName = "Task_2", Description = "Do Task_2", ClientAddress = "Kiev", StartTime = new DateTime (2019, 10, 10, 14, 24, 12), EndTime = new DateTime (2019, 10, 10, 14, 36, 36), ClientId = 101},
+                new ClientTask() { Id = 3, TaskName = "Task_3", Description = "Do Task_3", ClientAddress = "Paris", StartTime = new DateTime (2019, 10, 10, 14, 24, 12), EndTime = new DateTime (2019, 10, 10, 14, 36, 36), ClientId = 101},
                 new ClientTask() { Id = 4, TaskName = "Task_4", Description = "Do Task_4", ClientAddress = "Kiev", StartTime = new DateTime (2019, 10, 10, 14, 24, 12), EndTime = new DateTime (2019, 10, 10, 14, 36, 36), ClientId = 3},
                 new ClientTask() { Id = 5, TaskName = "Task_5", Description = "Do Task_5", ClientAddress = "Kabul", StartTime = new DateTime (2019, 10, 10, 14, 24, 12), EndTime = new DateTime (2019, 10, 10, 14, 36, 36), ClientId = 3},
             };

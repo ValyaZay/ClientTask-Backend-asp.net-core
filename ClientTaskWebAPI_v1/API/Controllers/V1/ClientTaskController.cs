@@ -23,10 +23,7 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
         public IActionResult GetAllByClientId(int id)
         {
             List<ClientTaskViewModel> clientTaskViewModels = clientTaskService.GetTasksByClientId(id);
-            if(clientTaskViewModels.Count == 0)
-            {
-                return NotFound("The client with Id = " + id + " does not have any task");
-            }
+            
             return Ok(clientTaskViewModels);
         }
     }
