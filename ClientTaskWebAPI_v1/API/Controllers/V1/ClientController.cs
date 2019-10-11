@@ -31,5 +31,6 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
             ClientViewModel clientViewModel = _clientService.GetClientById(id);
             return Ok(clientViewModel);
         }
+        //test
     }
 }
