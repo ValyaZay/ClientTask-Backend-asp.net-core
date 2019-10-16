@@ -30,9 +30,16 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
         [HttpGet(ApiRoutes.ClientTask.GetTaskById)]
         public IActionResult GetTaskById(int taskId)
         {
-            ClientTaskViewModel clientTaskViewModel = clientTaskService.GetTaskById(taskId);
-
-            return Ok(clientTaskViewModel);
+            try
+            {
+                ClientTaskViewModel clientTaskViewModel = clientTaskService.GetTaskById(taskId);
+                return Ok(clientTaskViewModel);
+            }
+            catch (Exception)
+            {
+                return NotFound("Task with id= " + taskId + " does not exist");
+            }
+            
         }
 
         [HttpPost(ApiRoutes.ClientTask.Create)]
@@ -63,6 +70,56 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
 
             }
             return BadRequest("Insert valid data");
+        }
+
+        [HttpPut(ApiRoutes.ClientTask.Update)]
+        public IActionResult Update([FromBody] UpdateTaskViewModel updateTaskViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var status = clientTaskService.Update(updateTaskViewModel);
+                    if (!status)
+                    {
+                        return BadRequest("Task is not updated");
+                    }
+                    else
+                    {
+                        return NoContent();
+                    }
+
+                }
+
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+            }
+            return BadRequest("Insert valid data");
+        }
+
+        [HttpDelete(ApiRoutes.ClientTask.Delete)]
+        public IActionResult Delete(int taskId)
+        {
+            try
+            {
+                var status = clientTaskService.Delete(taskId);
+                if (status)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return BadRequest("Task is not deleted");
+                }
+
+            }
+            catch (Exception)
+            {
+                return NotFound("The item with ID=" + taskId + " does not exist");
+            }
         }
     }
 }

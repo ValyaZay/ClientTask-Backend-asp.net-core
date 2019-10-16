@@ -33,10 +33,24 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
             clientTask.ClientId = clientTaskDTO.ClientId;
             clientTask.StartTime = Convert.ToDateTime(clientTaskDTO.StartTime);
             clientTask.EndTime = Convert.ToDateTime(clientTaskDTO.EndTime);
-            clientTask.Id = tasksList.Count + 1;
+            clientTask.Id = tasksList.Max(t => t.Id) + 1;
 
             tasksList.Add(clientTask);
             return clientTask.Id;
+        }
+
+        public bool Delete(int id)
+        {
+            ClientTask clientTask = tasksList.FirstOrDefault(t => t.Id == id);
+            if(clientTask != null)
+            {
+                tasksList.Remove(clientTask);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public List<ClientTaskDTO> GetTasksByClientId(int id)
@@ -76,6 +90,26 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
             clientTaskDTO.ClientId = clientTask.ClientId;
 
             return clientTaskDTO;
+        }
+
+        public bool Update(ClientTaskDTO clientTaskDTO)
+        {
+            ClientTask clientTask = tasksList.FirstOrDefault(t => t.Id == clientTaskDTO.Id);
+            if(clientTask != null)
+            {
+                clientTask.TaskName = clientTaskDTO.TaskName;
+                clientTask.Description = clientTaskDTO.Description;
+                clientTask.ClientAddress = clientTaskDTO.ClientAddress;
+                clientTask.StartTime = Convert.ToDateTime(clientTaskDTO.StartTime);
+                clientTask.EndTime = Convert.ToDateTime(clientTaskDTO.EndTime);
+                clientTask.ClientId = clientTaskDTO.ClientId;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

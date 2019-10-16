@@ -12,5 +12,9 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Interfaces.ServicesInterfaces
         ClientTaskViewModel GetTaskById(int id);
 
         int Create(CreateTaskViewModel createTaskViewModel);
+
+        bool Update(UpdateTaskViewModel updateTaskViewModel);
+
+        bool Delete(int id);
     }
 }

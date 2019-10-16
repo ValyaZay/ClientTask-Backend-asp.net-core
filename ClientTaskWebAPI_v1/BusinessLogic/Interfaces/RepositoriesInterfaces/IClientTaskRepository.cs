@@ -11,5 +11,9 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Interfaces.RepositoriesInterfaces
         List<ClientTaskDTO> GetTasksByClientId(int id);
         ClientTaskDTO GetTasksById(int id);
         int Create(ClientTaskDTO clientTaskDTO);
+
+        bool Update(ClientTaskDTO clientTaskDTO);
+
+        bool Delete(int id);
     }
 }

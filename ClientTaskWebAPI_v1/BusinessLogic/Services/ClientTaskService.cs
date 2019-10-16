@@ -31,6 +31,27 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Services
             return id;
         }
 
+        public bool Delete(int id)
+        {
+            ClientTaskDTO clientTaskDTO = clientTaskRepository.GetTasksById(id);
+            if(clientTaskDTO == null)
+            {
+                throw new NullReferenceException("The item with ID=" + id + " does not exist");
+            }
+            else
+            {
+                try
+                {
+                    bool status = clientTaskRepository.Delete(id);
+                    return status;
+                }
+                catch (Exception)
+                {
+                    throw new Exception();
+                }
+            }
+        }
+
         public ClientTaskViewModel GetTaskById(int id)
         {
             ClientTaskViewModel clientTaskViewModel = new ClientTaskViewModel();
@@ -66,6 +87,21 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Services
             }
             return clientTaskViewModels;
 
+        }
+
+        public bool Update(UpdateTaskViewModel updateTaskViewModel)
+        {
+            ClientTaskDTO clientTaskDTO = new ClientTaskDTO();
+            clientTaskDTO.Id = updateTaskViewModel.Id;
+            clientTaskDTO.TaskName = updateTaskViewModel.TaskName;
+            clientTaskDTO.Description = updateTaskViewModel.Description;
+            clientTaskDTO.ClientAddress = updateTaskViewModel.ClientAddress;
+            clientTaskDTO.ClientId = updateTaskViewModel.ClientId;
+            clientTaskDTO.StartTime = updateTaskViewModel.StartTime;
+            clientTaskDTO.EndTime = updateTaskViewModel.EndTime;
+
+            bool status = clientTaskRepository.Update(clientTaskDTO);
+            return status;
         }
     }
 }
