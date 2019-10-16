@@ -23,6 +23,36 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
                 new ClientTask() { Id = 5, TaskName = "Task_5", Description = "Do Task_5", ClientAddress = "Kabul", StartTime = new DateTime (2019, 10, 10, 14, 24, 12), EndTime = new DateTime (2019, 10, 10, 14, 36, 36), ClientId = 3},
             };
         }
+
+        public int Create(ClientTaskDTO clientTaskDTO)
+        {
+            ClientTask clientTask = new ClientTask();
+            clientTask.TaskName = clientTaskDTO.TaskName;
+            clientTask.Description = clientTaskDTO.Description;
+            clientTask.ClientAddress = clientTaskDTO.ClientAddress;
+            clientTask.ClientId = clientTaskDTO.ClientId;
+            clientTask.StartTime = Convert.ToDateTime(clientTaskDTO.StartTime);
+            clientTask.EndTime = Convert.ToDateTime(clientTaskDTO.EndTime);
+            clientTask.Id = tasksList.Max(t => t.Id) + 1;
+
+            tasksList.Add(clientTask);
+            return clientTask.Id;
+        }
+
+        public bool Delete(int id)
+        {
+            ClientTask clientTask = tasksList.FirstOrDefault(t => t.Id == id);
+            if(clientTask != null)
+            {
+                tasksList.Remove(clientTask);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public List<ClientTaskDTO> GetTasksByClientId(int id)
         {
             List<ClientTaskDTO> clientTaskDTOs = new List<ClientTaskDTO>();
@@ -40,8 +70,46 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
                 clientTaskDTO.ClientId = clientTask.ClientId;
 
                 clientTaskDTOs.Add(clientTaskDTO);
+
             }
             return clientTaskDTOs;
+        }
+
+        public ClientTaskDTO GetTasksById(int id)
+        {
+            ClientTask clientTask = tasksList.Where(task => task.Id == id)
+                                             .FirstOrDefault();
+
+            ClientTaskDTO clientTaskDTO = new ClientTaskDTO();
+            clientTaskDTO.Id = clientTask.Id;
+            clientTaskDTO.TaskName = clientTask.TaskName;
+            clientTaskDTO.Description = clientTask.Description;
+            clientTaskDTO.ClientAddress = clientTask.ClientAddress;
+            clientTaskDTO.StartTime = clientTask.StartTime.ToString();
+            clientTaskDTO.EndTime = clientTask.EndTime.ToString();
+            clientTaskDTO.ClientId = clientTask.ClientId;
+
+            return clientTaskDTO;
+        }
+
+        public bool Update(ClientTaskDTO clientTaskDTO)
+        {
+            ClientTask clientTask = tasksList.FirstOrDefault(t => t.Id == clientTaskDTO.Id);
+            if(clientTask != null)
+            {
+                clientTask.TaskName = clientTaskDTO.TaskName;
+                clientTask.Description = clientTaskDTO.Description;
+                clientTask.ClientAddress = clientTaskDTO.ClientAddress;
+                clientTask.StartTime = Convert.ToDateTime(clientTaskDTO.StartTime);
+                clientTask.EndTime = Convert.ToDateTime(clientTaskDTO.EndTime);
+                clientTask.ClientId = clientTaskDTO.ClientId;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
