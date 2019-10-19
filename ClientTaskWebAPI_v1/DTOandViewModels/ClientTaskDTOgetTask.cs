@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ClientTaskWebAPI_v1.DTOandViewModels
 {
-    public class UpdateTaskViewModel
+    public class ClientTaskDTOgetTask
     {
         public int Id { get; set; }
         public string TaskName { get; set; }

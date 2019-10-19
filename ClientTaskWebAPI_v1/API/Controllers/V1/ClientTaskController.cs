@@ -32,7 +32,7 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
         {
             try
             {
-                ClientTaskViewModel clientTaskViewModel = clientTaskService.GetTaskById(taskId);
+                UpdateTaskViewModel clientTaskViewModel = clientTaskService.GetTaskById(taskId);
                 return Ok(clientTaskViewModel);
             }
             catch (Exception)

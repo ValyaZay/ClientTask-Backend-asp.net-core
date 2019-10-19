@@ -75,18 +75,19 @@ namespace ClientTaskWebAPI_v1.Data.Repositories
             return clientTaskDTOs;
         }
 
-        public ClientTaskDTO GetTasksById(int id)
+        public ClientTaskDTOgetTask GetTasksById(int id)
         {
             ClientTask clientTask = tasksList.Where(task => task.Id == id)
                                              .FirstOrDefault();
 
-            ClientTaskDTO clientTaskDTO = new ClientTaskDTO();
+            ClientTaskDTOgetTask clientTaskDTO = new ClientTaskDTOgetTask();
             clientTaskDTO.Id = clientTask.Id;
             clientTaskDTO.TaskName = clientTask.TaskName;
             clientTaskDTO.Description = clientTask.Description;
             clientTaskDTO.ClientAddress = clientTask.ClientAddress;
-            clientTaskDTO.StartTime = clientTask.StartTime.ToString();
-            clientTaskDTO.EndTime = clientTask.EndTime.ToString();
+            clientTaskDTO.StartTime = clientTask.StartTime;
+            clientTaskDTO.EndTime = clientTask.EndTime;
+            
             clientTaskDTO.ClientId = clientTask.ClientId;
 
             return clientTaskDTO;
