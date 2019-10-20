@@ -9,11 +9,11 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Interfaces.ServicesInterfaces
     public interface IClientTaskService
     {
         List<ClientTaskViewModel> GetTasksByClientId(int id);
-        UpdateTaskViewModel GetTaskById(int id);
+        ClientTaskGetByIdViewModel GetTaskById(int id);
 
-        int Create(CreateTaskViewModel createTaskViewModel);
+        int Create(ClientTaskViewModel clientTaskViewModel);
 
-        bool Update(UpdateTaskViewModel updateTaskViewModel);
+        bool Update(ClientTaskViewModel clientTaskViewModel);
 
         bool Delete(int id);
     }

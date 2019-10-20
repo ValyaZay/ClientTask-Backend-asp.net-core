@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace ClientTaskWebAPI_v1.DTOandViewModels
 {
-    public class CreateTaskViewModel
+    public class ClientTaskGetByIdDTO
     {
-       public int Id { get; set; }
+        public int Id { get; set; }
         public string TaskName { get; set; }
         public string Description { get; set; }
         public string ClientAddress { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public int ClientId { get; set; }
     }
 }

@@ -32,8 +32,8 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
         {
             try
             {
-                UpdateTaskViewModel clientTaskViewModel = clientTaskService.GetTaskById(taskId);
-                return Ok(clientTaskViewModel);
+                ClientTaskGetByIdViewModel clientTaskGetByIdViewModel = clientTaskService.GetTaskById(taskId);
+                return Ok(clientTaskGetByIdViewModel);
             }
             catch (Exception)
             {
@@ -43,22 +43,22 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
         }
 
         [HttpPost(ApiRoutes.ClientTask.Create)]
-        public IActionResult Create([FromBody] CreateTaskViewModel createTaskViewModel)
+        public IActionResult Create([FromBody] ClientTaskViewModel clientTaskViewModel)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    int id = clientTaskService.Create(createTaskViewModel);
+                    int id = clientTaskService.Create(clientTaskViewModel);
                     var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-                    var locationUri = baseUrl + "/" + ApiRoutes.ClientTask.GetTaskById.Replace("{taskId}", id.ToString()).Replace("{clientId}", createTaskViewModel.ClientId.ToString());
+                    var locationUri = baseUrl + "/" + ApiRoutes.ClientTask.GetTaskById.Replace("{taskId}", id.ToString()).Replace("{clientId}", clientTaskViewModel.ClientId.ToString());
                     return Created(locationUri, new ClientTaskViewModel { Id = id, 
-                                                                          TaskName = createTaskViewModel.TaskName,
-                                                                          Description = createTaskViewModel.Description,
-                                                                          ClientAddress = createTaskViewModel.ClientAddress,
-                                                                          ClientId = createTaskViewModel.ClientId,
-                                                                          StartTime = createTaskViewModel.StartTime,
-                                                                          EndTime = createTaskViewModel.EndTime 
+                                                                          TaskName = clientTaskViewModel.TaskName,
+                                                                          Description = clientTaskViewModel.Description,
+                                                                          ClientAddress = clientTaskViewModel.ClientAddress,
+                                                                          ClientId = clientTaskViewModel.ClientId,
+                                                                          StartTime = clientTaskViewModel.StartTime,
+                                                                          EndTime = clientTaskViewModel.EndTime 
                                                                         });
                     
                 }
@@ -73,13 +73,13 @@ namespace ClientTaskWebAPI_v1.API.Controllers.V1
         }
 
         [HttpPut(ApiRoutes.ClientTask.Update)]
-        public IActionResult Update([FromBody] UpdateTaskViewModel updateTaskViewModel)
+        public IActionResult Update([FromBody] ClientTaskViewModel clientTaskViewModel)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var status = clientTaskService.Update(updateTaskViewModel);
+                    var status = clientTaskService.Update(clientTaskViewModel);
                     if (!status)
                     {
                         return BadRequest("Task is not updated");

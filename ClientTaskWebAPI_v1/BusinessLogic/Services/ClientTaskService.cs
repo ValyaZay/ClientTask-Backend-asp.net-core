@@ -17,15 +17,15 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Services
             this.clientTaskRepository = clientTaskRepository;
         }
 
-        public int Create(CreateTaskViewModel createTaskViewModel)
+        public int Create(ClientTaskViewModel clientTaskViewModel)
         {
             ClientTaskDTO clientTaskDTO = new ClientTaskDTO();
-            clientTaskDTO.TaskName = createTaskViewModel.TaskName;
-            clientTaskDTO.Description = createTaskViewModel.Description;
-            clientTaskDTO.ClientAddress = createTaskViewModel.ClientAddress;
-            clientTaskDTO.ClientId = createTaskViewModel.ClientId;
-            clientTaskDTO.StartTime = createTaskViewModel.StartTime;
-            clientTaskDTO.EndTime = createTaskViewModel.EndTime;
+            clientTaskDTO.TaskName = clientTaskViewModel.TaskName;
+            clientTaskDTO.Description = clientTaskViewModel.Description;
+            clientTaskDTO.ClientAddress = clientTaskViewModel.ClientAddress;
+            clientTaskDTO.ClientId = clientTaskViewModel.ClientId;
+            clientTaskDTO.StartTime = clientTaskViewModel.StartTime;
+            clientTaskDTO.EndTime = clientTaskViewModel.EndTime;
 
             int id = clientTaskRepository.Create(clientTaskDTO);
             return id;
@@ -33,8 +33,8 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Services
 
         public bool Delete(int id)
         {
-            ClientTaskDTOgetTask clientTaskDTO = clientTaskRepository.GetTasksById(id);
-            if(clientTaskDTO == null)
+            ClientTaskGetByIdDTO clientTaskGetByIdDTO = clientTaskRepository.GetTasksById(id);
+            if(clientTaskGetByIdDTO == null)
             {
                 throw new NullReferenceException("The item with ID=" + id + " does not exist");
             }
@@ -52,19 +52,21 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Services
             }
         }
 
-        public UpdateTaskViewModel GetTaskById(int id)
+        public ClientTaskGetByIdViewModel GetTaskById(int id)
         {
-            UpdateTaskViewModel updateTaskViewModel = new UpdateTaskViewModel();
-            ClientTaskDTOgetTask clientTaskDTO = clientTaskRepository.GetTasksById(id);
-            updateTaskViewModel.Id = clientTaskDTO.Id;
-            updateTaskViewModel.TaskName = clientTaskDTO.TaskName;
-            updateTaskViewModel.Description = clientTaskDTO.Description;
-            updateTaskViewModel.ClientAddress = clientTaskDTO.ClientAddress;
-            updateTaskViewModel.StartTime = clientTaskDTO.StartTime;
-            updateTaskViewModel.EndTime = clientTaskDTO.EndTime;
-            updateTaskViewModel.ClientId = clientTaskDTO.ClientId;
+            ClientTaskGetByIdViewModel clientTaskGetByIdViewModel = new ClientTaskGetByIdViewModel();
+            
+            ClientTaskGetByIdDTO clientTaskGetByIdDTO = clientTaskRepository.GetTasksById(id);
 
-            return updateTaskViewModel;
+            clientTaskGetByIdViewModel.Id = clientTaskGetByIdDTO.Id;
+            clientTaskGetByIdViewModel.TaskName = clientTaskGetByIdDTO.TaskName;
+            clientTaskGetByIdViewModel.Description = clientTaskGetByIdDTO.Description;
+            clientTaskGetByIdViewModel.ClientAddress = clientTaskGetByIdDTO.ClientAddress;
+            clientTaskGetByIdViewModel.StartTime = clientTaskGetByIdDTO.StartTime;
+            clientTaskGetByIdViewModel.EndTime = clientTaskGetByIdDTO.EndTime;
+            clientTaskGetByIdViewModel.ClientId = clientTaskGetByIdDTO.ClientId;
+
+            return clientTaskGetByIdViewModel;
         }
 
         public List<ClientTaskViewModel> GetTasksByClientId(int id)
@@ -89,20 +91,20 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Services
 
         }
 
-        public bool Update(UpdateTaskViewModel updateTaskViewModel)
+        public bool Update(ClientTaskViewModel clientTaskViewModel)
         {
-            //ClientTaskDTO clientTaskDTO = new ClientTaskDTO();
-            //clientTaskDTO.Id = updateTaskViewModel.Id;
-            //clientTaskDTO.TaskName = updateTaskViewModel.TaskName;
-            //clientTaskDTO.Description = updateTaskViewModel.Description;
-            //clientTaskDTO.ClientAddress = updateTaskViewModel.ClientAddress;
-            //clientTaskDTO.ClientId = updateTaskViewModel.ClientId;
-            //clientTaskDTO.StartTime = updateTaskViewModel.StartTime;
-            //clientTaskDTO.EndTime = updateTaskViewModel.EndTime;
+            ClientTaskDTO clientTaskDTO = new ClientTaskDTO();
+            clientTaskDTO.Id = clientTaskViewModel.Id;
+            clientTaskDTO.TaskName = clientTaskViewModel.TaskName;
+            clientTaskDTO.Description = clientTaskViewModel.Description;
+            clientTaskDTO.ClientAddress = clientTaskViewModel.ClientAddress;
+            clientTaskDTO.ClientId = clientTaskViewModel.ClientId;
+            clientTaskDTO.StartTime = clientTaskViewModel.StartTime;
+            clientTaskDTO.EndTime = clientTaskViewModel.EndTime;
 
-            //bool status = clientTaskRepository.Update(clientTaskDTO);
-            //return status;
-            return true;
+            bool status = clientTaskRepository.Update(clientTaskDTO);
+            return status;
+            
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ClientTaskWebAPI_v1.BusinessLogic.Interfaces.RepositoriesInterfaces
     public interface IClientTaskRepository
     {
         List<ClientTaskDTO> GetTasksByClientId(int id);
-        ClientTaskDTOgetTask GetTasksById(int id);
+        ClientTaskGetByIdDTO GetTasksById(int id);
         int Create(ClientTaskDTO clientTaskDTO);
 
         bool Update(ClientTaskDTO clientTaskDTO);
